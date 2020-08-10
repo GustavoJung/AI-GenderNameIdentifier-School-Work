@@ -10,7 +10,7 @@ Identificar o gênero (masculino ou feminino) de alguém pelo seu primeiro nome
 https://data.world/alexandra/baby-names onde o mesmo foi desenvolvido pelo usuário Alexandra, link para o perfil: https://data.world/alexandra. O Dataset está em formato .csv, tem 7000 itens e possuí duas colunas: nome e gênero, ambas em formato de String.
 
 ## Técnica 
-  Será desenvolvia uma RNN (Recurrent Neural Network) onde primeiramente serão adaptados os nomes e transformados em tensores. Primeiro, os nomes serão transformados de Unicode para ASCII, utilizando a biblioteca Unidecode (link: https://pypi.org/project/Unidecode/). Feito isso, os nomes devem ser transformados em tensores, para transformá-los serão criados vetores de tamanho igual ao número de letras(maiúsculas e minúsculas) da tabela ASCII, onde cada índice terá valor 0, inicialmente. Para cada letra do nome, será identificado sua posição nas letras da tabela ASCII (por exemplo: a letra c teria como posição, 3. 
+  Será desenvolvia uma RNN (Recurrent Neural Network) onde primeiramente serão adaptados os nomes e transformados em tensores. Primeiro, os nomes serão transformados de Unicode para ASCII, utilizando a biblioteca Unidecode (link: https://pypi.org/project/Unidecode/). Feito isso, os nomes devem ser transformados em tensores, para transformá-los serão criados vetores de tamanho igual ao número de letras(maiúsculas e minúsculas) da tabela ASCII, onde cada índice terá valor 0, inicialmente. Para cada letra do nome, será identificado sua posição nas letras da tabela ASCII (por exemplo: a letra c teria como posição, 3). 
 
 Exemplo de um vetor da letra c imaginando que teríamos apenas as 26 primeiras letras minúsculas vindas da tabela ASCII:
 
