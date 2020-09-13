@@ -57,7 +57,7 @@ output, next_hidden = rnn(input[0], hidden)
 learning_rate = 0.005 
 criterion = nn.NLLLoss()
 
-if __name__ == '__rede_completa':
+if __name__ == '__main__':
     #Classe de treinamento
     def train(category_tensor, line_tensor):
         #Estado inicial da rede
