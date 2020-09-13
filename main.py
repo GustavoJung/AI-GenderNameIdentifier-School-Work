@@ -57,6 +57,7 @@ output, next_hidden = rnn(input[0], hidden)
 learning_rate = 0.005 
 criterion = nn.NLLLoss()
 
+
 if __name__ == '__main__':
     #Classe de treinamento
     def train(category_tensor, line_tensor):
@@ -129,10 +130,16 @@ if __name__ == '__main__':
 
     start = time.time()
 
+    corrects = 0
+    #output
     for iter in range(1, n_iters + 1):
         category, line, category_tensor, line_tensor = randomTrainingExample()
         output, loss = train(category_tensor, line_tensor)
         current_loss += loss
+        #acurácia
+        a_guess,a_guess_i=categoryFromOutput(output)
+        if a_guess == category:
+                corrects = corrects+1
 
         # Print iter number, loss, name and guess
         #print(categoryFromOutput(output))
@@ -140,15 +147,18 @@ if __name__ == '__main__':
             guess, guess_i = categoryFromOutput(output)
             correct = '✓' if guess == category else '✗ (%s)' % category
             print('%d %d%% (%s) %.4f %s / %s %s' % (iter, iter / n_iters * 100, timeSince(start), loss, line, guess, correct))
-
+            
         # Add current loss avg to list of losses
         if iter % plot_every == 0:
             all_losses.append(current_loss / plot_every)
             current_loss = 0
+    #imprime a acuracia
+    print(corrects/(n_iters))
+    
 
-        #for i in range(10):
-        #  category, line, category_tensor, line_tensor = randomTrainingExample()
-        #  print('category =', category, '/ line =', line)
+    #for i in range(10):
+    #  category, line, category_tensor, line_tensor = randomTrainingExample()
+    #  print('category =', category, '/ line =', line)
 
     #Resultados
     plt.figure()
@@ -159,7 +169,7 @@ if __name__ == '__main__':
     #matriz de confusao
     # Keep track of correct guesses in a confusion matrix
     confusion = torch.zeros(n_categorias, n_categorias)
-    n_confusion = 10000
+    n_confusion = 1000
 
     # Just return an output given a line
     def evaluate(line_tensor):
@@ -177,10 +187,16 @@ if __name__ == '__main__':
         guess, guess_i = categoryFromOutput(output)
         category_i = todas_categorias.index(category)
         confusion[category_i][guess_i] += 1
+        #print(category_i)
+        #print(guess)
 
     # Normalize by dividing every row by its sum
     for i in range(n_categorias):
         confusion[i] = confusion[i] / confusion[i].sum()
+        
+ 
+
+
 
     # Set up plot
     fig = plt.figure()
