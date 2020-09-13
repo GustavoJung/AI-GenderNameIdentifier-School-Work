@@ -81,7 +81,7 @@ if __name__ == '__main__':
 
     #execucao do treinamento
     #Numero de iterações da rede
-    n_iters = 1000
+    n_iters = 10000
     #A cada x iterações será exibida uma das iterações feitas pela rede, mostrando o tempo que levou até ser executada,
     #a probabilidade dada pela rede e usada para identificar a categoria, o nome avaliado, a categoria identificada,
     #se está correto ou incorreto. No caso de incorreto, mostra a categoria que seria correta entre parenteses.

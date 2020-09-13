@@ -1,7 +1,7 @@
 import torch
 import string
 from preparing_data import *
-from rede_completa import RNN
+from main import RNN
 import PySimpleGUI as sg
 
 model = RNN(n_letras,128,len(todas_categorias))
