@@ -163,7 +163,7 @@ if __name__ == '__main__':
     torch.save(rnn.state_dict(), "rede_treinada.pth")
 
     #matriz de confusao
-    # Keep track of correct guesses in a confusion matrix
+    # Acompanha as suposições corretas da matriz 
     confusion = torch.zeros(n_categorias, n_categorias)
     n_confusion = 1000
 
@@ -176,7 +176,7 @@ if __name__ == '__main__':
 
         return output
 
-    # Go through a bunch of examples and record which are correctly guessed
+    # repassa pelos exemplos e registre quais foram corretamente adivinhados 
     for i in range(n_confusion):
         category, line, category_tensor, line_tensor = randomTrainingExample()
         output = evaluate(line_tensor)
@@ -186,7 +186,7 @@ if __name__ == '__main__':
         #print(category_i)
         #print(guess)
 
-    # Normalize by dividing every row by its sum
+    # dividinde cada linha por sua soma
     for i in range(n_categorias):
         confusion[i] = confusion[i] / confusion[i].sum()
         
@@ -204,7 +204,7 @@ if __name__ == '__main__':
     ax.set_xticklabels([''] + todas_categorias, rotation=90)
     ax.set_yticklabels([''] + todas_categorias)
 
-    # Force label at every tick
+    # rotula cada tick
     ax.xaxis.set_major_locator(ticker.MultipleLocator(1))
     ax.yaxis.set_major_locator(ticker.MultipleLocator(1))
 
