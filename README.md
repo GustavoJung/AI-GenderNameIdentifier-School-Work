@@ -4,7 +4,12 @@
 Gustavo Jung e Luciano Velho Garcia
 
 ## Problema
-Identificar o gênero (masculino ou feminino) de alguém pelo seu primeiro nome
+Identificar o gênero (masculino ou feminino) de alguém pelo seu primeiro nome.
+O software recebe um nome e deve identificar se o nome informado é do gênero masculino ou feminino.
+Ex.: 
+
+Gustavo | boy
+Maria   | girl
 
 ## Dataset 
 https://data.world/alexandra/baby-names onde o mesmo foi desenvolvido pelo usuário Alexandra, link para o perfil: https://data.world/alexandra. O Dataset está em formato .csv, tem 7000 itens e possuí duas colunas: nome e gênero, ambas em formato de String.
@@ -21,6 +26,47 @@ tensor = [0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
 
 ## Treinamento da rede 
   O treinamento ocorrerá da seguinte forma: criar um input e marcar um tensor alvo, o estado inicial da camada oculta é zerado,  para cada letra do nome: ler e salvar seu estado oculto para a próxima letra, comparar o resultado com o alvo marcado, fazer uma backpropagation e retornar o resultado com os erros.
+
+## Instruções de uso
+Requerido: 
+
+Python 3.8, e/ou um editor de código (recomendado o VS Code).
+
+Python nas variáveis de ambiente do sistema.
+
+Para verificar se o python está nas variáveis de sistema, clique no botão iniciar e digite ambiente. Selecione a opçao de "editar as variáveis de ambiente do sistema". Na janela que abrir, clique em Variáveis de Ambiente. Nas variáveis de sistema e de usuário, selecione a variável "PATH" e clique em editar. Adicione um novo caminho com o diretório do seu python. Caso a variável PATH não exista, crie uma e adicione o caminho do diretório python.
+
+->Fazer download do repositório usando o comando ->  git clone -b versao1.0  https://github.com/GustavoJung/inteligenciaArtificial
+
+->Abrir o prompt de comando
+
+->Executar os seguintes comandos:
+
+  ->python -m pip install numpy
+  
+  ->python -m pip install pandas
+  
+  ->python -m pip install pysimplegui
+  
+  ->python -m pip install torch
+  
+  ->python -m pip install matplotlib
+  
+  Para executar o sistema, primeiro é preciso executar a classe main. Nela a rede será treinada e poderá ser usada para prever nomes rodando a classe predicting. Para executar os diferentes métodos de avaliação, deve-se executar as suas respectivas classes.
+  
+  Para executar uma classe pelo prompt de comando, deve-se acessar o diretório onde a mesma se encontra e executar o comando a seguir:
+  
+  -> python main.py
+  
+  Após ter executado essa classe, pode-se executar todas as outras apenas alterando o nome da classe a ser executada, por ex.:
+  
+  ->python predicting.py
+  
+  A classe predicting é a única que possuí interface gráfica, as outras terão seus dados informados no próprio prompt.
+  
+## Resultados obtidos
+
+Durante o desenvolvimento desse trabalho, foram avaliadas duas principais variáveis que alteraram o desempenho da rede durante seu treinamento, sendo elas: número de épocas e a taxa de aprendizado. O número de épocas foi, inicialmente, muito alto. Utilizávamos 100000 épocas, o que levava um tempo relativamente alto de computação para o treinamento, foram realizados testes com valores menores e o valor de 10000 épocas foi o melhor em questão de desempenho e tempo. Outra variável testada foi a da taxa de aprendizado, inicialmente em 0.005, foi atualizada para 0.007 devido a redução do número de épocas feita anteriormente, porém a alteração nos resultados não foi tão expressiva.
 
 ## Avaliação dos resultados
   Para verificar o desempenho da rede serão desenvolvidas matrizes de confusão seguindo dois modelos: Holdout e K-Fold.
