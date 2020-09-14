@@ -76,3 +76,7 @@ Durante o desenvolvimento desse trabalho, foram avaliadas duas principais variá
 
 #### K-Fold
   O Dataset será dividido em K subconjuntos (proporcionalmente), para cada um deles existirão os subconjuntos de treinamento e testes. Serão realizadas K rodadas de treinamento e para cada uma, testes. O resultado será avaliado a partir da média de cada uma das rodadas e, a partir dele, montada a matriz de confusão. 
+
+##Vídeo
+
+https://drive.google.com/file/d/12_b2fwM7KVGCXDNA8ZY4ZAUKzmji2MKS/view?usp=sharing
