@@ -140,7 +140,7 @@ if __name__ == '__main__':
         #print(categoryFromOutput(output))
         if iter % print_every == 0:
             guess, guess_i = categoryFromOutput(output)
-            correct = '✓' if guess == category else '✗ (%s)' % category
+            correct = 'V' if guess == category else 'X (%s)' % category
             print('%d %d%% (%s) %.4f %s / %s %s' % (iter, iter / n_iters * 100, timeSince(start), loss, line, guess, correct))
             
         # Add current loss avg to list of losses
