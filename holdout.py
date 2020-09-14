@@ -72,12 +72,7 @@ class RNN(nn.Module):
 
 n_hidden = 128
 rnn = RNN(n_letras, n_hidden, n_categorias)
-print(rnn)
-#exemplo
-input = lineToTensor('Albert')
-hidden = torch.zeros(1, n_hidden)
 
-output, next_hidden = rnn(input[0], hidden)
 
 #Treinamento
 #Taxa de aprendizado
@@ -134,6 +129,17 @@ def randomTrainingExample():
     line_tensor = lineToTensor(line)
     return category, line, category_tensor, line_tensor
 
+#Método que irá efetivamente realizar o teste
+def randomTestExample():
+    #Recebe uma categoria aleátoria
+    category = randomChoice(todas_categorias)
+    #Recebe uma linha aleatória
+    line = randomChoice(sub_testes[category])
+    #Transforma a categoria em um tensor.
+    category_tensor = torch.tensor([todas_categorias.index(category)], dtype=torch.long)
+    #Transforma a linha em um tensor
+    line_tensor = lineToTensor(line)
+    return category, line, category_tensor, line_tensor
 
 #interpretar o resultado da categoria
 #Recebe o resultado como parametro e retorna a categoria a qual o nome testado pertence (em índice e textualmente)
@@ -180,7 +186,7 @@ for iter in range(1, n_iters + 1):
         current_loss = 0
 
 #imprime a acuracia
-print("Acurácia: ")
+print("Acurácia do treino: ")
 print(corrects/(n_iters))
     
 
@@ -202,19 +208,26 @@ def evaluate(line_tensor):
 
     return output
 
+corrects = 0
 # Go through a bunch of examples and record which are correctly guessed
 for i in range(n_confusion):
-    category, line, category_tensor, line_tensor = randomTrainingExample()
+    category, line, category_tensor, line_tensor = randomTestExample()
     output = evaluate(line_tensor)
     guess, guess_i = categoryFromOutput(output)
     category_i = todas_categorias.index(category)
     confusion[category_i][guess_i] += 1
-
+    #acuracia
+    a_guess,a_guess_i=categoryFromOutput(output)
+    if a_guess == category:
+        corrects = corrects+1
 
 # Normalize by dividing every row by its sum
 for i in range(n_categorias):
     confusion[i] = confusion[i] / confusion[i].sum()
-        
+
+#imprime a acuracia
+print("Acurácia do teste: ")
+print(corrects/(n_confusion))
 # Set up plot
 fig = plt.figure()
 ax = fig.add_subplot(111)

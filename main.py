@@ -46,11 +46,6 @@ class RNN(nn.Module):
 n_hidden = 128
 rnn = RNN(n_letras, n_hidden, n_categorias)
 
-#exemplo
-input = lineToTensor('Albert')
-hidden = torch.zeros(1, n_hidden)
-
-output, next_hidden = rnn(input[0], hidden)
 
 #Treinamento
 #Taxa de aprendizado
@@ -153,6 +148,7 @@ if __name__ == '__main__':
             all_losses.append(current_loss / plot_every)
             current_loss = 0
     #imprime a acuracia
+    print("Acurácia")
     print(corrects/(n_iters))
     
 

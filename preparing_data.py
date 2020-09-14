@@ -77,14 +77,8 @@ for arquivo in arquivos('*.txt'):
 
     
 
-#Para cada uma delas, imprime seu identificador
-for categoria in todas_categorias:
-     print("Categoria: " + categoria)
-
-#Imprime o total de categorias
 
 n_categorias = len(todas_categorias)
-print("Total de categorias: " + str(n_categorias))
 
 
 #Transformar nomes em tensores
@@ -112,4 +106,3 @@ def lineToTensor(line):
         tensor[li][0][letterToIndex(letter)] = 1
     return tensor
 
-print("Tensor de uma única letra -> " + str(letterToTensor('t')))
